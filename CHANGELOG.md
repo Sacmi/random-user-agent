@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.16.2-bullshit
+
+### Removed
+
+- Безусловно полезное и необходимое политическое сообщение
+- Призыв ставить вайки ~~ГАГАГА ДАУБИ~~ в магазинах расширений
+
 ## v3.16.2
 
 ### Changed

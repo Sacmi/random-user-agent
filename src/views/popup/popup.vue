@@ -11,8 +11,6 @@
            @clickRefresh="refreshUserAgent"
            @clickSettings="openSettings"
            @changeGeneratorTypes="updateGeneratorTypes"/>
-  <war-hint v-if="showWarHint"/>
-  <rate-extension v-else/>
   <popup-footer :version="version"/>
 </template>
 
@@ -22,8 +20,6 @@ import i18n from './../mixins/i18n'
 import PopupHeader from './extended/header.vue'
 import ActiveUserAgent from './extended/active-user-agent.vue'
 import Actions from './extended/actions.vue'
-import WarHint from './extended/war-hint.vue'
-import RateExtension from './extended/rate-extension.vue'
 import PopupFooter from './extended/footer.vue'
 import {version, VersionResponse} from '../../messaging/handlers/version'
 import {RuntimeSender, Sender} from '../../messaging/runtime'
@@ -43,8 +39,6 @@ export default defineComponent({
     'popup-header': PopupHeader,
     'active-user-agent': ActiveUserAgent,
     'actions': Actions,
-    'war-hint': WarHint,
-    'rate-extension': RateExtension,
     'popup-footer': PopupFooter,
   },
   mixins: [i18n],
@@ -55,7 +49,6 @@ export default defineComponent({
     useragent, version: string
     currentPageDomain: string
     currentTabID: number | undefined
-    showWarHint: boolean
   } => {
     return {
       enabled: false,
@@ -65,7 +58,6 @@ export default defineComponent({
       version: '',
       currentPageDomain: '',
       currentTabID: undefined as number | undefined,
-      showWarHint: false,
     }
   },
   methods: {
@@ -121,10 +113,6 @@ export default defineComponent({
     },
   },
   created(): void {
-    if (chrome.i18n.getUILanguage().toLowerCase().startsWith('ru')) {
-      this.showWarHint = true
-    }
-
     backend
       .send( // order is important!
         version(),
